@@ -142,7 +142,11 @@ h1 {
 
 [id^=visual_item_] {
     border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 
 #side_menu {
     width: 300px;

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <script src="scripts/main.js"></script>
     <script src="config.js"></script>
+    <script src='https://cdn.plot.ly/plotly-3.0.1.min.js'></script>
 </head>
 <body>
     <div id="top_banner">
@@ -30,10 +31,18 @@
                 <div id="inner_item_1"></div>
                 <div id="inner_item_2">
                     <div id="visual_wrapper">
-                        <div id="visual_item_1"></div>
-                        <div id="visual_item_2"></div>
-                        <div id="visual_item_3"></div>
-                        <div id="visual_item_4"></div>
+                        <div id="visual_item_1">
+                            <div id="visual_plot_1"></div>
+                        </div>
+                        <div id="visual_item_2">
+                            <div id="visual_plot_2"></div>
+                        </div>
+                        <div id="visual_item_3">
+                            <div id="visual_plot_3"></div>
+                        </div>
+                        <div id="visual_item_4">
+                            <div id="visual_plot_4"></div>
+                        </div>
                     </div>
                 </div>
              </div>
@@ -52,6 +61,11 @@
 
     window.onload = function() {
         main.side_menu.attach_events();
+        ["visual_plot_1", "visual_plot_2", "visual_plot_3", "visual_plot_4"].forEach(function(id) {
+            main.charts.polar({
+                target_id : id   
+            });
+        });  
     }
     
 </script>
