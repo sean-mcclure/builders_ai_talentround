@@ -30,6 +30,12 @@ const main = {
                     if(i === 0) {
                         item.style.marginTop = "50px";
                     };
+                    item.addEventListener("click", function() {
+                        main.charts.polar({
+                            target_id : "visual_plot_1",
+                            values : polar_data.apply[item.innerText.split(" ").join("_")]
+                        });
+                    });
                 });
             document.getElementById("side_menu").classList.add("open");
         },
@@ -39,91 +45,61 @@ const main = {
     },
     charts : {
         polar : function(options) {
-            data = [
-            {
-                type: "scatterpolar",
-                mode: "lines",
-                r: [0, 2, 1.5, 0, 2.5, 2.5, 0],
-                theta: [0, 10, 25, 0, 205, 215, 0],
-                fill: "toself",
-                fillcolor: '#709BFF',
-                line: {
-                color: 'black'
-                }
-            },
-            {
-                type: "scatterpolar",
-                mode: "lines",
-                r: [0, 3.5, 3.5, 0],
-                theta: [0, 55, 75, 0],
-                fill: "toself",
-                fillcolor: '#E4FF87',
-                line: {
-                color: 'black'
-                }
-            },
-            {
-                type: "scatterpolar",
-                mode: "lines",
-                r: [0, 4.5, 4.5, 0, 4.5, 4.5, 0],
-                theta: [0, 100, 120, 0, 305, 320, 0],
-                fill: "toself",
-                fillcolor: '#FFAA70',
-                line: {
-                color: 'black'
-                }
-            },
-            {
-                type: "scatterpolar",
-                mode: "lines",
-                r: [0, 4, 4, 0],
-                theta: [0, 165, 195, 0],
-                fill: "toself",
-                fillcolor: '#FFDF70',
-                line: {
-                color: 'black'
-                }
-            },
-            {
-                type: "scatterpolar",
-                mode: "lines",
-                r: [0, 3, 3, 0],
-                theta: [0, 262.5, 277.5, 0],
-                fill: "toself",
-                fillcolor: '#B6FFB4',
-                line: {
-                color: 'black'
-                }
+            const n = options.values.length;
+            const angleStep = 360 / n;
+            const r = [];
+            const theta = [];
+            // Build the polygon shape
+            for (let i = 0; i < n; i++) {
+                r.push(options.values[i]);
+                theta.push(i * angleStep);
             }
-            ]
-
-            layout = {
-                 width: 300, 
-                height: 300, 
-                responsive: true,
-            polar: {
+            // Close the shape by repeating the first point
+            r.push(options.values[0]);
+            theta.push(0);
+            const data = [{
+                type: 'scatterpolar',
+                mode: 'lines',
+                r: r,
+                theta: theta,
+                fill: 'toself',
+                fillcolor: "#8c7ae6",
+                line: { color: 'black' }
+            }];
+            const layout = {
+                width : 340,
+                height : 340,
+                paper_bgcolor: 'rgba(0,0,0,0)',  // fully transparent background
+                plot_bgcolor: 'rgba(0,0,0,0)', 
+                polar: { 
+                bgcolor: 'rgba(0,0,0,0)',
                 radialaxis: {
-                visible: true,
-                range: [0, 5]
+                    visible: true,
+                    color: 'white',
+                    tickfont: { color: 'white' },
+                    gridcolor: 'white',
+                    linecolor: 'white'
+                },
+                angularaxis: {
+                    color: 'white',
+                    tickfont: { color: 'white' },
+                    gridcolor: 'white',
+                    linecolor: 'white'
                 }
-            },
-               showlegend: false,
-               paper_bgcolor: 'rgba(0,0,0,0)',
-               plot_bgcolor: 'rgba(0,0,0,0)',
-               font: {
-                color: 'white'
-               },
-               margin : {
-                  t : 10,
-                  b : 10,
-                  l : 10,
-                  r : 10,
-                  p : 0
-               }
+                },
+                font: { color: 'white' },
+                showlegend: false,
+                margin : {
+                    t : 30,
+                    b : 30,
+                    l : 30,
+                    r : 30,
+                    p : 0
+                }
             };
             const polar_config = {
-                displayModeBar: false
-            }
+                responsive: true
+            };
             Plotly.newPlot(options.target_id, data, layout, polar_config);
         }
     },

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <script src="scripts/main.js"></script>
     <script src="config.js"></script>
+    <script src="data/polar_data.js"></script>
     <script src='https://cdn.plot.ly/plotly-3.0.1.min.js'></script>
 </head>
 <body>
@@ -63,7 +64,8 @@
         main.side_menu.attach_events();
         ["visual_plot_1", "visual_plot_2", "visual_plot_3", "visual_plot_4"].forEach(function(id) {
             main.charts.polar({
-                target_id : id   
+                target_id : id,
+                values : [3,5,6,7,9] 
             });
         });  
     }
