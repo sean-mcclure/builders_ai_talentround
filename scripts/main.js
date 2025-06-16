@@ -1,4 +1,7 @@
 const main = {
+    values : {
+        top_banner_selection : ""
+    },
     top_banner : {
         button_color : function() {
             document.querySelectorAll(".top_banner_buttons").forEach(function(elem) {
@@ -10,7 +13,8 @@ const main = {
     side_menu : {
         attach_events : function() {
             document.querySelectorAll(".top_banner_buttons").forEach(function(elem) {
-                elem.addEventListener("click", function() {
+                elem.addEventListener("click", function(e) {
+                        main.values.top_banner_selection = e.target.innerText.toLowerCase();
                         main.utility.remove_side_menu_items();
                         main.side_menu.open_menu({
                             menu_items : config.side_menu_options[elem.innerText.toLowerCase().trim()]
@@ -31,9 +35,11 @@ const main = {
                         item.style.marginTop = "50px";
                     };
                     item.addEventListener("click", function() {
-                        main.charts.polar({
-                            target_id : "visual_plot_1",
-                            values : polar_data.apply[item.innerText.split(" ").join("_")]
+                        ["visual_plot_1", "visual_plot_2", "visual_plot_3", "visual_plot_4"].forEach(function(id) {
+                            main.charts.polar({
+                                target_id : id,
+                                values : polar_data[main.values.top_banner_selection][item.innerText.split(" ").join("_").split("-").join("_")][id]
+                            });
                         });
                     });
                 });
