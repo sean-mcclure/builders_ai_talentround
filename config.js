@@ -21,6 +21,4 @@ const config = {
         offer: "#2c2c54",        // Deep navy
         onboarding: "#84817a"    // Neutral grey-taupe
     }
-    
-    
 };

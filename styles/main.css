@@ -2,6 +2,10 @@
     --main_blue : #227093;
 }
 
+* {
+    font-family: Nunito;
+}
+
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -14,6 +18,26 @@ body {
 
 h1 {
     color: white;
+}
+
+input, textarea {
+    height: 40px;
+    border-radius: 3px;
+    border: none;
+    outline: 0;
+    font-size: 18px;
+    padding-left: 5px;
+}
+
+textarea {
+    height: 200px;
+    padding: 10px;
+}
+
+button {
+    height: 40px;
+    border-radius: 3px;
+    border: none;
 }
 
 #sign_in_button {
@@ -47,13 +71,13 @@ h1 {
 }
 
 .top_banner_buttons {
-    height: 40px;
     border-radius: 4px;
     border: none;
     cursor: pointer;
     margin: 10px;
     color: black;
     background: #dcdde1;
+    font-size: 16px;
 }
 
 #side_menu_title {
@@ -68,10 +92,17 @@ h1 {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 600px;
-    height: 400px;
+    height: auto;
     background: var(--main_blue);
     box-shadow: 2px 2px 10px black;
     border-radius: 5px;
+    padding: 20px;
+}
+
+#submit_button {
+    font-size: 18px;
+    background: #ff793f;
+    color: white;
 }
 
 /*

@@ -44,14 +44,20 @@ const main = {
                         const side_menu_selection = item.innerText.split(" ").join("_").split("-").join("_");
                         
                         ["visual_plot_1", "visual_plot_2", "visual_plot_3", "visual_plot_4"].forEach(function(id) {
-                            main.charts.polar({
-                                target_id : id,
-                                values : polar_data[top_banner_selection][side_menu_selection][id]
-                            });
+                            if(polar_data[top_banner_selection][side_menu_selection][id]) {
+                                main.charts.polar({
+                                    target_id : id,
+                                    values : polar_data[top_banner_selection][side_menu_selection][id]
+                                });
+                            }
                         });
 
-                        if(top_banner_selection === "apply" && side_menu_selection === "fill_out_details") {
+                        if(top_banner_selection === "apply" && ["fill_out_details", "upload_resume", "upload_cover_letter"].includes(side_menu_selection)) {
                             main.utility.modal();
+                            main.form({
+                                target_id : "modal",
+                                form_type : side_menu_selection
+                            });
                         };
                     });
                 });
@@ -121,6 +127,18 @@ const main = {
             };
             Plotly.newPlot(options.target_id, data, layout, polar_config);
         }
+    },
+    form : function(options) {
+        document.getElementById("modal").innerHTML = "";
+        const html = forms[options.form_type];
+        document.getElementById(options.target_id).innerHTML = html;
+        document.getElementById("submit_button").addEventListener("click", function() {
+             const name = document.getElementById("name");
+             const email = document.getElementById("email");
+             const subject = document.getElementById("subject");
+             const message = document.getElementById("message");
+             alert("submitted")
+        });
     },
     utility : {
         remove_side_menu_items : function() {
