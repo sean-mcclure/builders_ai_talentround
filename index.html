@@ -10,6 +10,7 @@
     <script src="data/polar_data.js"></script>
     <script src="data/forms.js"></script>
     <script src='https://cdn.plot.ly/plotly-3.0.1.min.js'></script>
+    <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -63,6 +64,10 @@
 <script>
 
     window.onload = function() {
+
+        Parse.initialize("oZjteqjJlyq40j8asfZuugjOBeIHiHxbyz52sTNa", "UVKbGtVf3IeyrCEmIQLnO6Fj2wdXN8CocqNDvpsc");
+        Parse.serverURL = "https://parseapi.back4app.com/";
+
         main.side_menu.attach_events();
         ["visual_plot_1", "visual_plot_2", "visual_plot_3", "visual_plot_4"].forEach(function(id) {
             main.charts.polar({

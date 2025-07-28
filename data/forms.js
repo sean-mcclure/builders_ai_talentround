@@ -10,15 +10,14 @@ const forms = {
         </form>
         `,
     upload_resume : `
-        <form id="generalForm" style="max-width: 500px; margin: auto;">
         <h2>UPLOAD YOUR RESUME</h2>
-        <button id="upload_resume_button">UPLOAD</button>
-        </form>
+        <input type="file" id="resume_input" />
+        <button id="submit_button">UPLOAD</button>
         `,
     upload_cover_letter : `
         <form id="generalForm" style="max-width: 500px; margin: auto;">
         <h2>UPLOAD YOUR RESUME</h2>
-        <button id="upload_cover_letter_button">UPLOAD</button>
+        <button id="submit_button">UPLOAD</button>
         </form>
         `
 };
